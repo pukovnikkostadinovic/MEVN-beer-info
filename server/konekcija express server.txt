@@ -1,0 +1,17 @@
+const express = require('express');
+const app = express();
+var bodyParser = require('body-parser');
+var box = '';
+
+app.use(bodyParser.urlencoded({ limit: '1gb', extended: false }));
+app.use(bodyParser.raw({ limit: '1gb', type: 'text/plain' }));
+
+app.post('/', function(req, res){
+   box = req.body.toString('utf8');
+   //console.log(req.body.toString());
+});
+app.get('/', function(req, res){
+res.render('/usr/local/myApp/index.html',{haha:'hehe'});
+//res.send(box);
+});
+app.listen(80, () => console.log('listening on port 80'));
